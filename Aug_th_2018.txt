@@ -1,0 +1,34 @@
+export HADOOP_HOME="/home/sai1/hadoop-2.8.0"
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+
+export CASSANDRA_HOME=/home/sai1/cassendra/apache-cassandra-3.11.2
+export PATH=$PATH:$CASSANDRA_HOME/bin
+
+# added by Anaconda2 installer
+export PATH="/home/sai1/anaconda2/bin:$PATH"
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+
+
+/usr/lib/jvm/java-8-oracle
+
+
+sai1@BuildVM:~$ which java
+/usr/bin/java
+
+
+wget --continue --no-check-certificate -O jdk-8-linux-x64.tar.gz --header Cookie: oraclelicense=a http://download.oracle.com/otn-pub/java/jdk/8-b132/jdk-8-linux-x64.tar.gz
+
+==============================================================================================================

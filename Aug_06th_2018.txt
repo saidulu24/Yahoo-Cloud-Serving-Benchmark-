@@ -1,0 +1,149 @@
+CREATE KEYSPACE cycling
+  WITH REPLICATION = { 
+   'class' : 'NetworkTopologyStrategy',
+   'datacenter1' : 3 
+  } 
+AND DURABLE_WRITES = false ;
+
+
+https://docs.datastax.com/en/cql/3.1/cql/cql_using/cqlUseUDT.html
+
+
+CREATE TABLE users (
+  user_name varchar,
+  password varchar,
+  gender varchar,
+  session_token varchar,
+  state varchar,
+  birth_year bigint,
+  PRIMARY KEY (user_name));
+  
+  CREATE TABLE emp (
+  empID int,
+  deptID int,
+  first_name varchar,
+  last_name varchar,
+  PRIMARY KEY (empID, deptID));
+  
+  
+  
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (104, 15, 'jane', 'smith');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (105, 16, 'vanu', 'smitha');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (106, 17, 'vignesh', 'sam');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (106, 18, 'john', 'smith');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (107, 19, 'andrew', 'amit');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (108, 20, 'somesh', 'lendra');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (109, 21, 'sachin', 'moman');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (110, 22, 'kohli', 'desire');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (111, 23, 'rohan', 'rohit');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (112, 24, 'hardik', 'pandya');
+  
+======================================================================================================
+
+different workloads
+
+https://github.com/brianfrankcooper/YCSB/wiki/Core-Workloads
+
+Cassandra
+
+ycsb load cassandra -P workloads/workloada -p usertable=data
+
+
+ycsb load cassandra -P workloads -p usertable=data
+
+
+ycsb load basic -P workloada -P large.dat
+
+ycsb load basic -P  workloada -p recordcount=100000000
+
+ycsb load basic -P workloada -P large.dat -s > load.dat
+
+ycsb load basic -P workloada -P large.dat -s > load.dat
+
+ycsb run basic -P workloada -P large.dat -s > transactions.dat
+ 
+ycsb run basic -P workloada -P large.dat -s -threads 10 -target 100 > transactions.dat
+
+ycsb run basic -P workloada -P large.dat -s -threads 10 -target 100 -p measurementtype=timeseries -p timeseries.granularity=2000 > transactions.dat
+ 
+ 
+ 
+./cqlsh -u cassandra -p cassandra
+
+
+
+ycsb load cassandra -P workloada -p parameter
+
+load hbase -P workloads/workloada -p columnfamily=family
+
+
+load cassaandra -P ‪C:\ycsb-0.14.0\parameter.properties workloada -p ‪C:\ycsb-0.14.0\parameter.properties
+
+
+
+ycsb load cassandra -P ‪C:\ycsb-0.14.0\parameter.properties workloada -p ‪columnfamily=usertable
+
+
+
+
+ycsb load cassandra-cql -P host=9042 workloada -p ‪columnfamily=usertable
+
+localhost
+
+
+ycsb load C:\Users\saidulu.b\Downloads\apache-cassandra-3.0.17-bin.tar\apache-cassandra-3.0.17-bin\apache-cassandra-3.0.17\bin  -p C:\ycsb-0.14.0\parameter.properties workloada -p columnfamily=usertable
+
+
+
+
+load cassandra -P ‪C:\ycsb-0.14.0\parameter.properties -p columnfamily=usertable
+
+
+ycsb load cassandra\\src\\test\\java\\com\\yahoo\\ycsb\\db\\CassandraCQLClientTest -P workloada -p parameter
+
+
+ycsb load cassandra 
+
+
+
+ycsb load cassandra-cql -P C:\ycsb-cassandra-binding-0.14.0\parameter.properties C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -p ‪columnfamily=usertable
+
+
+
+ycsb load cassandra-cql -P C:\ycsb-cassandra-binding-0.14.0\parameter.properties C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -p ‪columnfamily=usertable
+ 
+ 
+ ycsb load cassandra-cql -P C:\ycsb-cassandra-binding-0.14.0\parameter.properties -p recordcount=1000000 C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s
+ 
+ 
+ 
+ C:\ycsb-cassandra-binding-0.14.0\workloads\workloada
+  
+  
+  localhost 127.0.0.1
+  
+  
+  ycsb load cassandra-cql -p hosts="192.168.122.89" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s > workloada_load_res.txt  
+  
+  
+  ycsb load cassandra-cql -p C:\ycsb-cassandra-binding-0.14.0\parameter.properties -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s > workloada_load_res.txt
+  
+  
+  ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s > workloada_load_res.txt
+  
+  
+  
+  
+ -p recordcount=1000000
+  
+ 

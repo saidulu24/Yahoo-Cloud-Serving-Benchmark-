@@ -1,0 +1,58 @@
+*************  https://github.com/chinglinwen/ycsb2graph
+
+YCSB STARTER -- https://github.com/chinglinwen/ycsb_starter/blob/master/README.md
+
+https://github.com/chinglinwen/ycsb2graph
+
+
+
+CREATE TABLE emp (
+  empID int,
+  deptID int,
+  first_name varchar,
+  last_name varchar,
+  PRIMARY KEY (empID, deptID));
+  
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (104, 15, 'jane', 'smith');
+  
+  how much data your inserting and testing
+  how to give 1gb records at atime for loadblancing testing
+  how to give croes
+  
+ ** Multi theraded --> performence check with 1gb data
+  single threaded --> performence check
+ https://stackoverflow.com/questions/6544037/why-does-mongodb-perform-better-with-multi-threaded-client-compared-to-a-single
+ 
+ Mongo DB : https://stackoverflow.com/questions/27654413/how-to-verify-data-is-loaded-into-mongodb-after-load-generation-phase-in-ycsbs
+  
+  https://github.com/brianfrankcooper/YCSB/issues/1059
+  
+  
+  ./bin/ycsb load memcached -s -P workloads/workloada -p memcached.hosts=127.0.0.1 -p basicdb.verbose=false 
+  -p basicdb.simulatedelay=4 -p measurement.interval=both -p measurementtype=hdrhistogram 
+  -p hdrhistogram.fileoutput=true -p maxexecutiontime=600 -p recordcount=400000
+  
+  
+  
+  ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s -threads 10 -target 100   > workloada_load_res1.txt
+  
+  ycsb run cassandra-cql -p hosts="localhost" -P C:\ycsb-0.14.0\workloads\workloada -s -threads 10 -target 50   > workloada_run_a.txt
+  
+  
+  ycsb load memcached -s -P C:\ycsb-0.14.0\workloads\workloada -p telnet memcached.hosts=127.0.0.1 -p basicdb.verbose=false -p basicdb.simulatedelay=4 -p measurement.interval=both -p measurementtype=hdrhistogram -p hdrhistogram.fileoutput=true -p maxexecutiontime=600 -p recordcount=400000
+  
+  
+  ycsb run memcached -s -P C:\ycsb-0.14.0\workloads\workloada -p telnet memcached.hosts=127.0.0.1 -p basicdb.verbose=false -p basicdb.simulatedelay=4 -p measurement.interval=both -p measurementtype=hdrhistogram -p hdrhistogram.fileoutput=true -p maxexecutiontime=600 -p recordcount=400000
+  
+  
+  
+  
+  
+  
+  ycsb load memcached -s -P C:\ycsb-0.14.0\workloads\workloada -p  memcached.hosts=127.0.0.1 -p cassandra-cql.verbose=false -p cassandra-cql.simulatedelay=4 -p measurement.interval=both -p measurementtype=hdrhistogram -p hdrhistogram.fileoutput=true -p maxexecutiontime=600 -p recordcount=400000
+  
+  
+  ycsb2graphV2.sh
+  
+  ycsb_starter.sh cassandra.properties

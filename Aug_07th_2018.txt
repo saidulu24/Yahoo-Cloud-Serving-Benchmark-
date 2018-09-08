@@ -1,0 +1,58 @@
+https://scalegrid.io/blog/how-to-benchmark-mongodb-with-ycsb/
+
+************   https://github.com/cloudius-systems/osv/wiki/Benchmarking-Cassandra-and-other-NoSQL-databases-with-YCSB
+
+
+
+/bin/ycsb load cassandra-cql -threads 4 -P workloads/workloada
+
+
+ycsb load cassandra-cql -P C:\ycsb-0.14.0\parameter.properties workloada -p ‪columnfamily=usertable
+
+
+
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('100', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+  
+  
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('101', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('102', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('103', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('104', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('105', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');  
+
+  
+ INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('110', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+  
+  
+
+  
+
+ ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s > workloada_load_res.txt
+ 
+ 
+ ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s > workloada_load_rest_soap.txt
+============================================================================================================================================================
+ 
+LOADING :
+--------------- 
+### ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s -threads 10 -target 100   > workloada_load_res1.txt
+
+RUNNING :
+--------------
+
+### ycsb run cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s -threads 10 -target 100   > workloada_load_res1.txt
+
+===================================================================================================================================================================
+
+
+ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-0.14.0\workloads\tsworkloada -s -threads 2 -target 10   > workloada_load_res1.txt
+ 
+ 
+ ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloadb -s -threads 10 -target 100   > workloadb_load_emp.txt

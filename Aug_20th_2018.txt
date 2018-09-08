@@ -1,0 +1,37 @@
+ycsb load redis -s -P C:\ycsb-redis-binding-0.14.0\workloads\workloada -p "redis.host=127.0.0.1" -p "redis.port=6379"  redis.cluster=true > TestoutputLoad.txt
+
+
+ycsb load redis -s -P C:\ycsb-redis-binding-0.14.0\workloads\workloada -p redis.host=127.0.0.1 -s -threads 10 -target 100 > TestoutputLoad.txt
+
+============================================================================================================================================================
+
+Maria DB
+-----------------
+https://downloads.mariadb.org/interstitial/mariadb-10.3.9/winx64-packages/mariadb-10.3.9-winx64.zip/from/http%3A//mirrors.neusoft.edu.cn/mariadb/
+
+
+
+https://github.com/brianfrankcooper/YCSB/issues/157
+
+
+Maven on ubuntu :
+
+https://www.mkyong.com/maven/how-to-install-maven-in-ubuntu/
+
+
+
+ mvn package -Dmaven.test.skip=true -Dcheckstyle.skip
+ 
+ mvn package -Dmaven.test.skip=true -Dcheckstyle.skip -DproxySet=true -DproxyHost=blr-sezproxy.hcl.com -DproxyPort=8080
+  
+ 
+ 
+ https://github.com/chinglinwen/ycsb2graph/tree/master/example
+ 
+ https://github.com/chinglinwen/ycsb2graph
+ 
+ ***********
+ 
+ https://github.com/HdrHistogram/HdrHistogram/blob/master/GoogleChartsExample/example1.txt
+ 
+ 

@@ -1,0 +1,74 @@
+Tool Name:Maria DB
+Vender: Maria DB.org
+Version:10.3.9
+Description: Please follow this url for more information 
+
+ https://mariadb.com/downloads/mariadb-tx 
+ 
+ 
+ mvn package -Dmaven.test.skip=true -Dcheckstyle.skip
+ 
+ 
+ 
+ ycsb load memcached -s -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -p  memcached.hosts=127.0.0.1 -p cassandra-cql.verbose=false -p cassandra-cql.simulatedelay=4 -p measurement.interval=both -p measurementtype=hdrhistogram -p hdrhistogram.fileoutput=true -p maxexecutiontime=600 -p recordcount=400000
+ 
+ 
+ 
+ 
+ 
+ https://github.com/chinglinwen/ycsb2graph/tree/master/example
+ 
+ https://github.com/chinglinwen/ycsb2graph
+ 
+ 
+ https://github.com/HdrHistogram/HdrHistogram/blob/master/GoogleChartsExample/example1.txt
+ 
+ 
+ ## https://github.com/brianfrankcooper/YCSB/tree/master/jdbc
+ 
+ ## https://www.cyberciti.biz/faq/how-to-show-list-users-in-a-mysql-mariadb-database/
+ 
+ 
+ Diffrenece between mysql and mariadb
+ ---------------------------------------
+  https://blog.panoply.io/a-comparative-vmariadb-vs-mysql
+  
+ 
+  
+ 
+ 
+ 
+ ycsb load jdbc -P C:\ycsb-0.14.0\workloads\workloada -P db.properties -cp C:\ycsb-0.14.0\jdbc-binding\lib\mariadb-java-client-2.2.5.jar -p db.driver=com.mysql.jdbc.Driver -p db.url=jdbc:mysql://127.0.0.1:3306/ycsb -p db.user=admin -p db.passwd=admin
+ 
+ 
+ 
+ ycsb load jdbc -P C:\ycsb-0.14.0\workloads\workloada  -cp C:\ycsb-0.14.0\jdbc-binding\lib\mariadb-java-client-2.2.5.jar -p db.driver=com.mariadb.jdbc.Driver -p db.url=jdbc:mariadb://127.0.0.1:3306/ycsb -p db.user=root -p db.passwd=*2B18499BA2E76F9C89C6E3E468EB8D2CC69C5900
+ 
+ 
+ ycsb load jdbc -P C:\ycsb-0.14.0\workloads\workloada -p db.driver=com.mariadb.jdbc.Driver -p db.url=jdbc:mariadb://127.0.0.1:3306/ycsb -p db.user=root -p db.passwd=*2B18499BA2E76F9C89C6E3E468EB8D2CC69C5900
+ 
+ 
+ ycsb load jdbc -P C:\ycsb-0.14.0\workloads\workloada -p db.driver=com.mysql.jdbc.Driver -p db.url=jdbc:mysql://127.0.0.1:3306/ycsb -p db.user=root -p db.passwd=*2B18499BA2E76F9C89C6E3E468EB8D2CC69C5900
+ 
+ 
+ ycsb load jdbc -P C:\ycsb-0.14.0\workloads\workloada -p db.driver=com.mysql.jdbc.Driver -p db.url=jdbc:mysql://127.0.0.1:3306/ycsb -p db.user=root -p db.passwd=*2B18499BA2E76F9C89C6E3E468EB8D2CC69C5900
+ 
+ 
+ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '%*2B18499BA2E76F9C89C6E3E468EB8D2CC69C5900%' WITH GRANT OPTION;
+ 
+
+ 
+ 'root'@'localhost'
+ 
+ 
+ C:\ycsb-0.14.0\bin>ycsb load jdbc -P C:\ycsb-0.14.0\workloads\workloada -p db.driver=com.mysql.jdbc.Driver -p db.url=jdbc:mysql://127.0.0.1:3306/Products -p db.user='root'@'localhost' -p db.passwd=*2B18499BA2E76F9C89C6E3E468EB8D2CC69C5900
+ 
+ 
+ ==============================================================
+ 
+ ycsb load jdbc -P C:\ycsb-0.14.0\workloads\workloada -p db.driver=com.mysql.jdbc.Driver -p db.url=jdbc:mysql://127.0.0.1:3306/Products -p db.user=root -p db.passwd=sai1 > MariaDB_outputLoad.txt
+ 
+ 
+ 
+ 
+ 

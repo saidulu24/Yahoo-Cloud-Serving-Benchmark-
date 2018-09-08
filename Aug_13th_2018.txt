@@ -1,0 +1,173 @@
+Case 1 : Tarantool installation with ycsb and create
+ keyspace and tables in Tarantool for testing.
+Case 2 : 
+Step 1: Load the data using YCSB and check into Tarantool DB weather data got inserted or not .
+Step2 : Run the data using YCSB and check into Tarantool DB weather data got inserted or not.
+Step3: Check results in YCSB bin directory.
+
+Case3 : Add diffferent parameters for testing permetation and combination (target,record count,threads(sinlge and multi),max excution time).
+Case4 : Test with different core workloads(work load-A,worload-B,workload-C,workload-D,workload-E,workload-F)
+Case5: Tarantool Mem-Cache with 1GB file(400000 records) and generate the Graphs using HDR histogram plotter.
+
+
+
+REDIS 
+=================================
+https://stackoverflow.com/questions/6476945/how-do-i-run-redis-on-windows
+
+===============================================================================
+
+C:\data\db
+
+
+step 1:
+----------
+"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe"  --dbpath="C:\data\db"
+
+
+step2:
+-------------------
+
+"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --dbpath "C:\test\mongo db data"
+
+
+waiting for connections 27017
+
+------------------------------------------------------------------------------
+TO START THE MONGO.DB
+------------------------------------------------------------------------------
+
+step 3:
+----------------------
+
+"C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe"
+
+
+=================================================================================================================================
+
+LOADING :
+--------------- 
+### ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s -threads 10 -target 100   > workloada_load_res1.txt
+
+RUNNING :
+--------------
+
+### ycsb run cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s -threads 10 -target 100   > workloada_load_res1.txt
+
+===========================================================================================================================================================
+
+MongoDB use DATABASE_NAME is used to create database.
+
+use DATABASE_NAME
+
+>use mydb
+switched to db mydb
+
+To check your currently selected database, use the command db
+
+>db
+mydb
+
+>db.movie.insert({"name":"tutorials point"})
+>show dbs
+
+Basic syntax of createCollection() command is as follows −
+
+db.createCollection(name, options)
+
+use test
+
+db.createCollection("mycollection")
+
+
+db.mycollection.insert(document)
+
+To insert single 
+====================================================
+db.mycol.insert({
+   _id: ObjectId(7df78ad8902c),
+   title: 'MongoDB Overview', 
+   description: 'MongoDB is no sql database',
+   by: 'tutorials point',
+   url: 'http://www.tutorialspoint.com',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 100
+})
+
+============================================================================================================
+To insert multiple documents in a single query, you can pass an array of documents in insert() command.
+-----------------------------------------------------------------------------------------------------------
+Example
+
+>db.post.insert([
+   {
+      title: 'MongoDB Overview', 
+      description: 'MongoDB is no sql database',
+      by: 'tutorials point',
+      url: 'http://www.tutorialspoint.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 100
+   },
+	
+   {
+      title: 'NoSQL Database', 
+      description: "NoSQL database doesn't have tables",
+      by: 'tutorials point',
+      url: 'http://www.tutorialspoint.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 20, 
+      comments: [	
+         {
+            user:'user1',
+            message: 'My first comment',
+            dateCreated: new Date(2013,11,10,2,35),
+            like: 0 
+         }
+      ]
+   }
+])
+================================================================================================================
+
+ 
+Now you are ready to run! First, use the asynchronous driver to load the data:
+--------------------------------------------------------------------------------
+ ycsb load mongodb-async -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada > MongooutputLoad.txt
+ 
+ 
+Then, run the workload:
+----------------------------------------------------------------------------------- 
+ ycsb run mongodb-async -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada > MongooutputRun.txt
+ 
+ 
+Similarly, to use the synchronous driver from MongoDB Inc. we load the data:
+------------------------------------------------------------------------------------ 
+ ycsb load mongodb -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada > MongopsynchronousLoad.txt
+ 
+ 
+Then, run the workload:
+-------------------------------------------------------------------------------------- 
+ ycsb run mongodb -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada > MongopsynchronousoutputRun.txt
+ 
+ 
+when your getting this exception:
+===============================================================================================================================
+com.allanbank.mongodb.error.DuplicateKeyException: E11000 duplicate key error collection: ycsb.usertable index: _id_ dup key: { : "user6284781860667377211" }
+        at com.allanbank.mongodb.util.FutureUtils.unwrap(FutureUtils.java:57)
+        at com.allanbank.mongodb.client.SynchronousMongoCollectionImpl.insert(SynchronousMongoCollectionImpl.java:687)
+        at com.allanbank.mongodb.client.SynchronousMongoCollectionImpl.insert(SynchronousMongoCollectionImpl.java:722)
+        at com.yahoo.ycsb.db.AsyncMongoDbClient.insert(AsyncMongoDbClient.java:272)
+        at com.yahoo.ycsb.DBWrapper.insert(DBWrapper.java:221)
+        at com.yahoo.ycsb.workloads.CoreWorkload.doInsert(CoreWorkload.java:562)
+        at com.yahoo.ycsb.ClientThread.run(Client.java:468)
+        at java.lang.Thread.run(Thread.java:748)
+================================================================================================================================ 
+*****[ https://github.com/brianfrankcooper/YCSB/issues/199]
+
+ycsb load mongodb-async -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada -p mongodb.upsert=true -s -threads 10 -target 100> TestMongooutputLoad25.txt
+
+
+ycsb load mongodb-async -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada -p mongodb.upsert=true -s -threads 10000 -target 100000000> TestMongooutputLoad20.txt
+
+
+ycsb load redis -s -P C:\ycsb-redis-binding-0.14.0\workloads\workloada -p "redis.host=127.0.0.1" -p "redis.port=6379"  -s -threads 10 -target 100 > TestoutputLoad.txt
+

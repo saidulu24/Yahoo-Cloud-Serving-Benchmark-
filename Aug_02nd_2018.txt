@@ -1,0 +1,106 @@
+pip install python-dateutil --upgrade
+
+
+
+from pyspark import SparkContext
+sc = SparkContext("local", "Simple App")
+
+from pyspark.sql.types import *
+from pyspark.sql import Row
+from pyspark import SparkContext as sc
+mydata = sc.textFile("/home/documents/mydata.csv")
+
+
+
+
+
+from pyspark.sql import SQLContext
+from pyspark.sql.types import *
+sqlContext = SQLContext(sc)
+df = sqlContext.read.format('com.databricks.spark.csv').options(header='true').load('C://Users//saidulu.b//Downloads//SampleCSVFile_11kb.csv')
+
+ 
+df = sqlContext.read.load('C://Users//saidulu.b//Downloads//SampleCSVFile_11kb.csv', 
+                          format='com.databricks.spark.csv', 
+                          header='true', 
+                          inferSchema='true')
+print(df)
+
+
+
+
+from pyspark.sql import SQLContext
+from pyspark import SparkConf
+from pyspark import SparkContext
+
+sc = SparkContext("local", "Simple App")
+sqlContext = SQLContext(sc)
+df = sqlContext.read.format('com.databricks.spark.csv').options(header='true').load(
+    'C://Users//saidulu.b//Downloads//SampleCSVFile_11kb.csv')
+
+df1 = sqlContext.read.load('C://Users//saidulu.b//Downloads//SampleCSVFile_11kb.csv',
+                          format='com.databricks.spark.csv',
+                          header='true',
+                          inferSchema='true')
+print(df)
+
+sangilimurugan
+prasanth
+
+
+======================================================================================================================================================================
+
+from pyspark.sql import SQLContext
+from pyspark import SparkConf
+from pyspark import SparkContext
+
+sc = SparkContext("local", "Simple App")
+#sqlContext = SQLContext(sc)
+
+df = sc.textFile("C://Users//saidulu.b//Downloads//SampleCSVFile_11kb.csv")
+
+#df = sqlContext.read.format("com.databricks.spark.csv").option("header", "true").option("inferschema", "true")\
+#    .option("mode", "DROPMALFORMED").load("C://Users//saidulu.b//Downloads//SampleCSVFile_11kb.csv")
+
+print(df)
+
+
+======================================================================================================================================================================
+
+from pyspark import sql, SparkConf, SparkContext
+
+conf = SparkConf().setAppName("Read_CSV")
+sc = SparkContext(conf=conf)
+sqlContext = sql.SQLContext(sc)
+
+df = sqlContext.read.csv("C://Users//saidulu.b//Downloads//SampleCSVFile_11kb.csv")
+df.show()
+
+
+
+
+from pyspark import sql, SparkConf, SparkContext
+
+conf = SparkConf().setAppName("Read_CSV")
+sc = SparkContext(conf=conf)
+sqlContext = sql.SQLContext(sc)
+
+#df = sqlContext.read.format("C://Users//saidulu.b//Downloads//SampleCSVFile_11kb.csv")
+#df.show()
+
+df = sqlContext.load(source="com.databricks.spark.csv", header="true", path = "C://Users//saidulu.b//Downloads//SampleCSVFile_11kb.csv")
+df.show()
+
+
+
+
+https://github.com/brianfrankcooper/YCSB/tree/master/bin
+
+
+
+
+
+
+
+
+

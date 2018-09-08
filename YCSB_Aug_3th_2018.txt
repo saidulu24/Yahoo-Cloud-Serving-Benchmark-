@@ -1,0 +1,951 @@
+REAL TIME SETUP : https://www.spec.org/cloud_iaas2016/docs/setup_cloud.html
+
+
+optional : https://www.voltdb.com/blog/2015/11/17/comparing-cloud-performance-ycsb/
+
+https://www.voltdb.com/blog/2014/05/07/voltdb-memory-database-achieves-best-class-results-running-cloud-ycsb-benchmark/
+
+QUESTIONS IN GITHUB ON YCSB :
+
+https://github.com/brianfrankcooper/YCSB/issues/530
+
+https://stackoverflow.com/questions/tagged/ycsb
+
+warning:[KNOWING ERROR]
+===================
+************************* https://github.com/brianfrankcooper/YCSB/issues/961 
+https://github.com/brianfrankcooper/YCSB/issues/671
+
+
+## study ---> https://github.com/brianfrankcooper/YCSB/issues/601 ##
+
+
+
+CASSANDRA :
+---------------
+
+https://github.com/cloudius-systems/osv/wiki/Benchmarking-Cassandra-and-other-NoSQL-databases-with-YCSB
+
+
+What is YCSB
+================================
+
+http://www.robertomarchetto.com/yahoo_cloud_serving_benchmark_ycsb_jdbc_tutorial
+
+1. Yahoo! Cloud Serving Benchmark, a benchmark for testing cloud based data service systems
+
+==================================================================================================================================================================
+C:\ycsb-mongodb-binding-0.14.0\bin>"C:\Program Files\Java\jdk1.8.0_151\bin\java.exe"  -classpath "C:\ycsb-mongodb-binding-0.14.0\conf;C:\ycsb-mongodb-binding-0.14.0\lib\core-0.14.0.jar;C:\ycsb-mongodb-binding-0.14.0\lib\HdrHistogram-2.1.4.jar;C:\ycsb-mongodb-binding-0.14.0\lib\htrace-core4-4.1.0-incubating.jar;C:\ycsb-mongodb-binding-0.14.0\lib\jackson-core-asl-1.9.4.jar;C:\ycsb-mongodb-binding-0.14.0\lib\jackson-mapper-asl-1.9.4.jar;C:\ycsb-mongodb-binding-0.14.0\lib\logback-classic-1.1.2.jar;C:\ycsb-mongodb-binding-0.14.0\lib\logback-core-1.1.2.jar;C:\ycsb-mongodb-binding-0.14.0\lib\mongo-java-driver-3.6.3.jar;C:\ycsb-mongodb-binding-0.14.0\lib\mongodb-async-driver-2.0.1.jar;C:\ycsb-mongodb-binding-0.14.0\lib\mongodb-binding-0.14.0.jar;C:\ycsb-mongodb-binding-0.14.0\lib\slf4j-api-1.7.25.jar;C:\ycsb-mongodb-binding-0.14.0\lib\snappy-java-1.1.7.1.jar" com.yahoo.ycsb.Client -load -db com.yahoo.ycsb.db.AsyncMongoDbClient -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloade -p mongodb.upsert=true recordcount=1000 -s -threads 10 -target 100 
+Usage: java com.yahoo.ycsb.Client [options]
+Options:
+  -threads n: execute using n threads (default: 1) - can also be specified as the 
+        "threadcount" property using -p
+  -target n: attempt to do n operations per second (default: unlimited) - can also
+       be specified as the "target" property using -p
+  -load:  run the loading phase of the workload
+  -t:  run the transactions phase of the workload (default)
+  -db dbname: specify the name of the DB to use (default: com.yahoo.ycsb.BasicDB) - 
+        can also be specified as the "db" property using -p
+  -P propertyfile: load properties from the given file. Multiple files can
+           be specified, and will be processed in the order specified
+  -p name=value:  specify a property to be passed to the DB and workloads;
+          multiple properties can be specified, and override any
+          values in the propertyfile
+  -s:  show status during run (default: no status)
+  -l label:  use label for status (e.g. to label one experiment out of a whole batch)
+
+Required properties:
+  workload: the name of the workload class to use (e.g. com.yahoo.ycsb.workloads.CoreWorkload)
+
+To run the transaction phase from multiple servers, start a separate client on each.
+To run the load phase from multiple servers, start a separate client on each; additionally,
+use the "insertcount" and "insertstart" properties to divide up the records to be inserted
+An argument value without corresponding argument specifier (e.g., -p, -s) was found. We expected an argument specifier and instead found recordcount=1000
+
+==================================================================================================================================================================================
+https://www.techaspect.com/techaspect-exchange/ycsb-tool/
+
+
+The Yahoo! Cloud Serving Benchmark Tool
+The Yahoo! Cloud Serving Benchmark (YCSB), an open source framework for evaluating and comparing the performance of multiple types of data-serving systems (including NoSQL stores such as Apache HBase, Apache Cassandra, Redis, MongoDB, and Voldemort), has long been the de facto open standard for this purpose.
+
+It has two parts:
+1. The YCSB Client, an extensible workload generator.
+2. The core workloads, a set of workload scenarios to be executed by the generator.
+
+The core workloads provide a well-rounded picture of a system’s performance, and the client is extensible so that you can define additional workloads to examine system aspects or application scenarios not covered by the core workload. The client can also be extended to benchmark different databases. YCSB ships with bindings for a long list of databases including HBase, Cassandra, Apache Accumulo, MongoDB, and Voldemort, and you can add support for a different data store by writing an interface layer.
+
+To benchmark multiple data stores and compare them, you can install those data stores within a single deployment (or alternatively on multiple instances of a selected hardware configuration). Then, the same workloads can be run against the various data stores. Next, plot the performance of each system, to see their relative performance profiles. One example of a good visualization to try is latency versus throughput curves.
+
+To run a YCSB workload:
+-Set up the database you will be testing.
+-Create the table and load data into it, either using YCSB or manually.
+-Choose the workload in YCSB. Some of the available workloads include read transactions, update transactions, and mixed transactions.
+-Choose runtime parameters, such as the request distribution and a number of threads.
+-Invoke the YCSB client to apply the workload.
+-When it is done, the client will report throughput and latency results.
+
+Platform: All
+
+Tags: Page Object Model, Selenium frameworks, Testing automation frameworks, POM
+
+===========================================================================================================================================================================
+Steps 1:
+----------------------------------------------------
+
+https://github.com/brianfrankcooper/YCSB/wiki/Prerequisites-for-Windows
+
+
+Verify things work:
+-------------------------------------------
+
+Download the latest version of YCSB as explained in the Getting Started guide
+Use the program of your choice to decompress the contents of the YCSB release into a known location (e.g. C:\YCSB-0.1.4\)
+Change into said directory
+Use python to execute the bin\ycsb script
+Example with python.exe installed in C:\Python27\, using the 'basic' datastore binding that only echoes transactions:
+
+C:\> cd YCSB-0.1.4
+C:\YCSB-0.1.4> C:\Python27\python.exe bin\ycsb load basic -P workloads\workloada -p recordcount=4
+        
+
+=======================================================================================================================================================
+
+https://github.com/brianfrankcooper/YCSB/wiki/Prerequisites-for-Windows
+
+
+cassendra is not installed so its giving connection error so i used skipped test 
+
+To skip 
+-----------------
+mvn package -Dmaven.test.skip=true
+
+===================================================================================================================================================
+
+To setup the proxy :
+
+C:\apache-maven-3.5.4\conf --> open settings and change the proxy settings.xml
+
+
+  <!-- proxies
+   | This is a list of proxies which can be used on this machine to connect to the network.
+   | Unless otherwise specified (by system property or command-line switch), the first proxy
+   | specification in this list marked as active will be used.
+   |-->
+  <proxies>    
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <username>saidulu.b</username>
+      <password>Ant@242424</password>
+      <host>blr-sezproxy.hcl.com</host>
+      <port>8080</port>
+    </proxy>
+  
+  </proxies>
+  
+=====================================================================================================================================
+
+casendra installtions follwed below url
+
+https://coderwall.com/p/qmzn6q/setting-up-apache-cassandra-on-windows-2cb077ae-1744-4a42-b4ae-11d40276e7a9
+
+installed 3.2 and open the bat file and setup the 
+
+Step 4:
+-------------------------------------------------------------------------------
+Make changes to the configuration files.Navigate to
+
+<Cassandra_folder>\apache-cassandra-3.7\bin
+Open Cassandra.bat in a notepad and edit the same.Add below line to the same
+
+set Java_home= <path to JDK 1.8>
+
+Search for the text ‘JAVA_OPTS’ and change the java memory opts.Initially it will be set to 2G.You can change it to 512M or 1G which ever is fine for you.
+
+Step 5:
+-------------------------------------------------------------------------------------
+Start Cassandra server by navigating to below path and execute Cassandra.bat.
+
+For more detailed tutorials on installation visit: http://developertutorials.net
+
+<Cassandra_folder>\apache-cassandra-3.7\bin\Cassandra.bat
+
+Once the server is started without errors you can see the message on the console as :
+
+Starting listening for CQL clients on localhost/127.0.0.1:9042.
+
+https://stackoverflow.com/questions/29778121/powershell-is-not-recognized-as-an-internal-or-external-command-operable-progr
+
+=====================================================================================================================================
+
+https://docs.datastax.com/en/cql/3.1/cql/cql_using/cqlUseUDT.html
+
+
+CREATE TABLE emp (
+  empID int,
+  deptID int,
+  first_name varchar,
+  last_name varchar,
+  PRIMARY KEY (empID, deptID));
+  
+   
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (104, 15, 'jane', 'smith');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (105, 16, 'vanu', 'smitha');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (106, 17, 'vignesh', 'sam');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (106, 18, 'john', 'smith');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (107, 19, 'andrew', 'amit');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (108, 20, 'somesh', 'lendra');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (109, 21, 'sachin', 'moman');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (110, 22, 'kohli', 'desire');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (111, 23, 'rohan', 'rohit');
+  INSERT INTO emp (empID, deptID, first_name, last_name)
+  VALUES (112, 24, 'hardik', 'pandya');
+  
+================================================================================================================================== 
+
+https://www.dbrnd.com/2016/05/nosql-create-your-first-cassandra-column-family-table/
+
+
+
+CREATE KEYSPACE usertable
+  WITH REPLICATION = { 
+   'class' : 'NetworkTopologyStrategy',
+   'datacenter1' : 3 
+  } 
+AND DURABLE_WRITES = false ;
+
+
+
+CREATE TABLE data (
+  userID int,
+  deptID int,
+  first_name varchar,
+  last_name varchar,
+  PRIMARY KEY (userID, deptID));
+  
+  
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (104, 15, 'jane', 'smith');
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (105, 16, 'vanu', 'smitha');
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (106, 17, 'vignesh', 'sam');
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (106, 18, 'john', 'smith');
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (107, 19, 'andrew', 'amit');
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (108, 20, 'somesh', 'lendra');
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (109, 21, 'sachin', 'moman');
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (110, 22, 'kohli', 'desire');
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (111, 23, 'rohan', 'rohit');
+  INSERT INTO data (userID, deptID, first_name, last_name)
+  VALUES (112, 24, 'hardik', 'pandya');
+
+==============================================================================================================================================
+Workload file for RUNNING workload:
+workload=com.yahoo.ycsb.workloads.CoreWorkload
+readallfields=true
+readproportion=0.5
+updateproportion=0
+insertproportion=0.5
+requestdistribution=zipfian
+fieldlength=10000
+recordcount=100000000
+operationcount=100000000
+maxexecutiontime=3600
+
+Workload File for LOADING workload:
+workload=com.yahoo.ycsb.workloads.CoreWorkload
+readallfields=true
+requestdistribution=zipfian
+fieldlength=10000
+operationcount=2810000
+maxexecutiontime=3600
+
+=============================================================================================================================================
+https://stackoverflow.com/questions/29605123/data-is-not-loaded-while-using-load-command-in-cassandra-using-ycsb
+
+
+INFO com.datastax.driver.core.Cluster - New Cassandra host localhost/127.0.0.1:9042 added
+
+====================================================================================================================================================
+Do all cassandra installtion :
+--------------------------------------
+
+Creating a table for use with YCSB
+For keyspace ycsb, table usertable:
+
+cqlsh> create keyspace ycsb
+    WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 3 };
+cqlsh> USE ycsb;
+cqlsh> create table usertable (
+    y_id varchar primary key,
+    field0 varchar,
+    field1 varchar,
+    field2 varchar,
+    field3 varchar,
+    field4 varchar,
+    field5 varchar,
+    field6 varchar,
+    field7 varchar,
+    field8 varchar,
+    field9 varchar);
+	
+	
+Insert if you want :
+-----------------------
+
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('100', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+  
+  INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('101', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('102', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('103', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('104', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('105', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+  
+
+============================================================================================================================================================
+ 
+LOADING :
+--------------- 
+### ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s -threads 10 -target 100   > workloada_load_res1.txt
+
+RUNNING :
+--------------
+
+### ycsb run cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s -threads 10 -target 100   > workloada_load_res1.txt
+
+===================================================================================================================================================================
+
+YCSB is a popular benchmark tool for NoSQL. It have ready adapters for different NoSQL DB like Cassandra, Mongo, Redis and others.
+
+YCSB comes with 6 out of the box workloads, each testing a different common use case
+
+Workload A: Update heavy workload This workload has a mix of 50/50 reads and writes. An application example is a session store recording recent actions.
+Workload B: Read mostly workload This workload has a 95/5 reads/write mix. Application example: photo tagging; add a tag is an update, but most operations are to read tags.
+Workload C: Read only This workload is 100% read. Application example: user profile cache, where profiles are constructed elsewhere (e.g., Hadoop).
+Workload D: Read latest workload In this workload, new records are inserted, and the most recently inserted records are the most popular. Application example: user status updates; people want to read the latest.
+Workload E: Short ranges In this workload, short ranges of records are queried, instead of individual records. Application example: threaded conversations, where each scan is for the posts in a given thread (assumed to be clustered by thread id).
+Workload F: Read-modify-write
+
+=====================================================================================================================================================================
+#####################################***************************************************************########################################################
+
+STEPS:
+----------
+STEP 1:
+------------------------
+1)Install YCSB 
+-----------------------
+https://github.com/brianfrankcooper/YCSB/wiki/Prerequisites-for-Windows
+
+To setup the proxy :
+
+C:\apache-maven-3.5.4\conf --> open settings and change the proxy settings.xml
+
+<!-- proxies
+   | This is a list of proxies which can be used on this machine to connect to the network.
+   | Unless otherwise specified (by system property or command-line switch), the first proxy
+   | specification in this list marked as active will be used.
+   |-->
+  <proxies>    
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <username>saidulu.b</username>
+      <password>Ant@242424</password>
+      <host>blr-sezproxy.hcl.com</host>
+      <port>8080</port>
+    </proxy>
+  
+  </proxies>
+  
+  
+cassendra is not installed so its giving connection error so i used skipped test 
+
+
+To skip 
+-----------------
+mvn package -Dmaven.test.skip=true
+
+INSTALL YCSB :
+-----------------------
+https://github.com/brianfrankcooper/YCSB/wiki/Prerequisites-for-Windows
+
+
+
+STEP 2:
+------------
+1)Install cassnadra on your machine
+
+follow the link 
+-----------------------
+casendra installtions follwed below url
+
+https://coderwall.com/p/qmzn6q/setting-up-apache-cassandra-on-windows-2cb077ae-1744-4a42-b4ae-11d40276e7a9
+
+installed 3.2 and open the bat file and setup the 
+
+
+Step 4:
+-------------------------------------------------------------------------------
+Make changes to the configuration files.Navigate to
+
+<Cassandra_folder>\apache-cassandra-3.7\bin
+Open Cassandra.bat in a notepad and edit the same.Add below line to the same
+
+set Java_home= <path to JDK 1.8>
+
+Search for the text ‘JAVA_OPTS’ and change the java memory opts.Initially it will be set to 2G.You can change it to 512M or 1G which ever is fine for you.
+
+Step 5:
+-------------------------------------------------------------------------------------
+Start Cassandra server by navigating to below path and execute Cassandra.bat.
+
+For more detailed tutorials on installation visit: http://developertutorials.net
+
+<Cassandra_folder>\apache-cassandra-3.7\bin\Cassandra.bat
+
+Once the server is started without errors you can see the message on the console as :
+
+Starting listening for CQL clients on localhost/127.0.0.1:9042.
+
+https://stackoverflow.com/questions/29778121/powershell-is-not-recognized-as-an-internal-or-external-command-operable-progr
+
+
+STEP :---->JUST TYPE [CASSANDRA] IN COMMANDPROPT : TO START --> cassandra
+       ---------------------------
+
+STEP :---> And in one more terminal type --> cqlsh
+
+STEPS 3:
+----------------------------
+Go to the cassandra DB and and create the table 
+============================================================
+Creating a table for use with YCSB
+For keyspace ycsb, table usertable:
+
+cqlsh> create keyspace ycsb
+    WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 3 };
+cqlsh> USE ycsb;
+cqlsh> create table usertable (
+    y_id varchar primary key,
+    field0 varchar,
+    field1 varchar,
+    field2 varchar,
+    field3 varchar,
+    field4 varchar,
+    field5 varchar,
+    field6 varchar,
+    field7 varchar,
+    field8 varchar,
+    field9 varchar);
+	
+DROP TABLE usertable;[if u want]
+
+Insert if you want :
+-----------------------
+
+INSERT INTO usertable (y_id,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9)
+  VALUES ('100', 'sports', 'finance', 'entertainment','politics','education','banking','agriculture','bussiness','movies','transport');
+  
+  
+STEPS 4:
+------------------------------------
+GO TO :
+
+C:\ycsb-cassandra-binding-0.14.0\bin> AND PASTE BELOW 
+
+
+LOADING :
+--------------- 
+### ycsb load cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s -threads 10 -target 100   > workloada_load_res1.txt
+
+RUNNING :
+--------------
+
+### ycsb run cassandra-cql -p hosts="localhost" -P C:\ycsb-cassandra-binding-0.14.0\workloads\workloada -s -threads 10 -target 100   > workloada_Run_res1.txt
+
+===================================================================================================================================================================
+
+After the above commands go to the C:\ycsb-cassandra-binding-0.14.0\bin and check the  workloada_load_res1.txt files
+(if they are two for loading and running another compare both of them)
+
+Go to the cassandra check select *from usertable;
+
+You can see the data which got inserted in object id format 
+============================================================================================================================================================
+
+select *from usertable limit 1;
+
+CREATE KEYSPACE tutorialspoint
+WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+
+DESCRIBE keyspaces;
+
+DROP KEYSPACE tutorialspoint;
+
+==============================================================================================================================================================
+https://github.com/brianfrankcooper/YCSB/wiki/Core-Workloads
+
+Different workloads:
+------------------------------
+
+**** Workloads D and E insert records during the test run. Thus, to keep the database size consistent ***
+
+
+The core workloads consist of six different workloads:
+
+Workload A: ------> Update heavy workload
+-----------
+This workload has a mix of 50/50 reads and writes. An application example is a session store recording recent actions.
+
+Workload B: ----> Read mostly workload
+------------
+This workload has a 95/5 reads/write mix. Application example: photo tagging; add a tag is an update, but most operations are to read tags.
+
+Workload C: ---> Read only
+---------------
+This workload is 100% read. Application example: user profile cache, where profiles are constructed elsewhere (e.g., Hadoop).
+
+Workload D: ----> Read latest workload
+-------------
+In this workload, new records are inserted, and the most recently inserted records are the most popular. Application example: user status updates; people want to read the latest.
+
+Workload E --> Short ranges
+-------------
+short ranges of records are queried, instead of individual records and Application 
+example: threaded conversations, where each scan is for the posts in a given thread (assumed to be clustered by thread id).
+
+Scan/insert ratio: 95/5
+#   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
+#   Request distribution: zipfian
+
+Workload F --> Read-modify-write
+------------
+In this workload, the client will read a record, modify it,
+and write back the changes. Application example: user database, where user records are read and modified by the user or to record user activity.
+
+==================================================================================================================================================
+CASSANDRA MEM-CACHE :(1-GB DATA with 4000000 record)
+
+https://github.com/brianfrankcooper/YCSB/issues/1059
+
+
+
+LOAD YCSB :
+----------------------------------
+ycsb load memcached -s -P C:\ycsb-0.14.0\workloads\workloada -p  memcached.hosts=127.0.0.1 -p cassandra-cql.verbose=false -p cassandra-cql.simulatedelay=4 -p measurement.interval=both -p measurementtype=hdrhistogram -p hdrhistogram.fileoutput=true -p maxexecutiontime=600 -p recordcount=400000
+
+RUN YCSB:
+-----------
+ycsb run memcached -s -P C:\ycsb-0.14.0\workloads\workloada -p  memcached.hosts=127.0.0.1 -p cassandra-cql.verbose=false -p cassandra-cql.simulatedelay=4 -p measurement.interval=both -p measurementtype=hdrhistogram -p hdrhistogram.fileoutput=true -p maxexecutiontime=600 -p recordcount=400000
+
+Go to the C:\ycsb-0.14.0\bin and check the inserted and updated file thoser are in hdr format
+
+now go to the http://hdrhistogram.github.io/HdrHistogram/plotFiles.html upload the hdr result file and check the result
+
+
+***  manual data :
+
+ https://github.com/HdrHistogram/HdrHistogram/blob/master/GoogleChartsExample/example1.txt
+ 
+ FIRWALL ISSUE :
+ 
+ https://stackoverflow.com/questions/20874232/memcached-connection-refused
+ 
+ Generate grapg using YCSB2GRAPH
+ ------------------------------------
+ 
+ https://github.com/chinglinwen/ycsb2graph/tree/master/example
+ 
+ https://github.com/chinglinwen/ycsb2graph
+ 
+=========================================================================================================================================================================
+
+username : susheel
+password : Ant@1234
+
+Go to the https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-4.0.1-signed.msi/download site and download the mongo-DB and install it.
+
+
+and follow the installtion steps one by one 
+
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+
+========================================================================================================================================================================
+
+################################################### MONGO.DB WITH YCSB #############################################################################
+
+
+step 1:
+----------
+"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe"  --dbpath="C:\data\db"
+
+
+step2:
+-------------------
+
+"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --dbpath "C:\test\mongo db data"
+
+
+waiting for connections 27017
+
+------------------------------------------------------------------------------
+TO START THE MONGO.DB
+------------------------------------------------------------------------------
+
+step 3:
+----------------------
+
+"C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe"
+
+=============================================================================================================================================
+
+MongoDB use DATABASE_NAME is used to create database.
+
+use DATABASE_NAME
+
+>use mydb
+switched to db mydb
+
+To check your currently selected database, use the command db
+
+>db
+mydb
+
+>db.movie.insert({"name":"tutorials point"})
+>show dbs
+
+Basic syntax of createCollection() command is as follows −
+
+db.createCollection(name, options)
+
+use test
+
+db.createCollection("mycollection")
+
+
+db.mycollection.insert(document)
+
+To insert single 
+====================================================
+db.mycol.insert({
+   _id: ObjectId(7df78ad8902c),
+   title: 'MongoDB Overview', 
+   description: 'MongoDB is no sql database',
+   by: 'tutorials point',
+   url: 'http://www.tutorialspoint.com',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 100
+})
+
+============================================================================================================
+To insert multiple documents in a single query, you can pass an array of documents in insert() command.
+-----------------------------------------------------------------------------------------------------------
+Example
+
+>db.post.insert([
+   {
+      title: 'MongoDB Overview', 
+      description: 'MongoDB is no sql database',
+      by: 'tutorials point',
+      url: 'http://www.tutorialspoint.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 100
+   },
+	
+   {
+      title: 'NoSQL Database', 
+      description: "NoSQL database doesn't have tables",
+      by: 'tutorials point',
+      url: 'http://www.tutorialspoint.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 20, 
+      comments: [	
+         {
+            user:'user1',
+            message: 'My first comment',
+            dateCreated: new Date(2013,11,10,2,35),
+            like: 0 
+         }
+      ]
+   }
+])
+================================================================================================================
+
+ 
+Now you are ready to run! First, use the asynchronous driver to load the data:
+--------------------------------------------------------------------------------
+ ycsb load mongodb-async -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada > MongooutputLoad.txt
+ 
+ 
+Then, run the workload:
+----------------------------------------------------------------------------------- 
+ ycsb run mongodb-async -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada > MongooutputRun.txt
+ 
+ 
+Similarly, to use the synchronous driver from MongoDB Inc. we load the data:
+------------------------------------------------------------------------------------ 
+ ycsb load mongodb -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada > MongopsynchronousLoad.txt
+ 
+ 
+Then, run the workload:
+-------------------------------------------------------------------------------------- 
+ ycsb run mongodb -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada > MongopsynchronousoutputRun.txt
+ 
+ 
+when your getting this exception:
+===============================================================================================================================
+com.allanbank.mongodb.error.DuplicateKeyException: E11000 duplicate key error collection: ycsb.usertable index: _id_ dup key: { : "user6284781860667377211" }
+        at com.allanbank.mongodb.util.FutureUtils.unwrap(FutureUtils.java:57)
+        at com.allanbank.mongodb.client.SynchronousMongoCollectionImpl.insert(SynchronousMongoCollectionImpl.java:687)
+        at com.allanbank.mongodb.client.SynchronousMongoCollectionImpl.insert(SynchronousMongoCollectionImpl.java:722)
+        at com.yahoo.ycsb.db.AsyncMongoDbClient.insert(AsyncMongoDbClient.java:272)
+        at com.yahoo.ycsb.DBWrapper.insert(DBWrapper.java:221)
+        at com.yahoo.ycsb.workloads.CoreWorkload.doInsert(CoreWorkload.java:562)
+        at com.yahoo.ycsb.ClientThread.run(Client.java:468)
+        at java.lang.Thread.run(Thread.java:748)
+================================================================================================================================ 
+*****[ https://github.com/brianfrankcooper/YCSB/issues/199] 
+
+TEN THOSAND THREADS AND TEN CORE RECORDS :
+-----------------------------------------
+
+ycsb load mongodb-async -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada -p mongodb.upsert=true -s -threads 10 -target 100> TestMongooutputLoad25.txt
+
+
+ycsb load mongodb-async -s -P C:\ycsb-mongodb-binding-0.14.0\workloads\workloada -p mongodb.upsert=true -s -threads 10000 -target 100000000> TestMongooutputLoad20.txt
+
+
+=============================================================================================================================================================================
+##################################################   REDIS  WITH YCSB  ##############################################################
+
+REDIS :
+=============================
+
+Install REDIS on windows nachine and follow the url [https://stackoverflow.com/questions/6476945/how-do-i-run-redis-on-windows]
+
+Go to the YCSB WITH RADIS load and run 
+
+ycsb load redis -s -P C:\ycsb-redis-binding-0.14.0\workloads\workloada -p redis.host=127.0.0.1 -s -threads 10 -target 100 > TestoutputLoad.txt
+
+ycsb run redis -s -P C:\ycsb-redis-binding-0.14.0\workloads\workloada -p redis.host=127.0.0.1 -s -threads 10 -target 100 > TestoutputRun.txt
+
+===========================================================================================================================================================================
+###########################################   MARIA DB INSTALLATION ########################################################
+
+Step 1:  
+-----------
+
+we need to download from https://mariadb.com/downloads/mariadb-tx  [windows msi installer]
+
+setup the username : root
+set up the password : sai1
+
+Go to the terminal MysqlClient(Mariadb 10.3(X64))
+
+Try to Enter password : Sai1
+
+1)create the DB:
+
+CREATE DATABASE Products;  
+
+SHOW DATABASES;   
+
+2)use the DB :
+
+USE Products;
+
+CREATE TABLE usertable (
+	YCSB_KEY VARCHAR(255) PRIMARY KEY,
+	FIELD0 TEXT, FIELD1 TEXT,
+	FIELD2 TEXT, FIELD3 TEXT,
+	FIELD4 TEXT, FIELD5 TEXT,
+	FIELD6 TEXT, FIELD7 TEXT,
+	FIELD8 TEXT, FIELD9 TEXT
+);
+
+3)show tables;
+4)select *from usertable;
+
+
+
+Step 2: (COMING TO YCSB  https://github.com/brianfrankcooper/YCSB/tree/master/jdbc)
+-------------------------
+Add your JDBC Driver to the classpath
+---------------------------------------
+Download the mysql-connector-java-5.1.37-bin.jar and keep it in lib -->[ C:\ycsb-0.14.0\jdbc-binding\lib]
+
+  
+Running a workload
+----------------------
+LOADING:
+----------
+ycsb load jdbc -P C:\ycsb-0.14.0\workloads\workloada -p db.driver=com.mysql.jdbc.Driver -p db.url=jdbc:mysql://127.0.0.1:3306/Products -p db.user=root -p db.passwd=sai1 > MariaDB_outputLoad.txt
+ 
+RUNNING:
+------------------
+ycsb run jdbc -P C:\ycsb-0.14.0\workloads\workloada -p db.driver=com.mysql.jdbc.Driver -p db.url=jdbc:mysql://127.0.0.1:3306/Products -p db.user=root -p db.passwd=sai1 > MariaDB_outputrun.txt
+  
+
+Finally to go to the C:\ycsb-0.14.0\bin and check the files 
+
+=======================================================================================================================================================================
+
+HIBENCH :
+
+Go to C:\HiBench-master in command promt and type 
+
+follow the url : https://github.com/intel-hadoop/HiBench/blob/master/docs/build-hibench.md
+
+
+mvn -Dspark=1.6 -Dscala=2.11 clean package
+
+mvn -Phadoopbench -Dspark=1.6 -Dscala=2.11 clean package
+
+mvn -Phadoopbench -Psparkbench -Dspark=1.6 -Dscala=2.11 clean package
+
+mvn -Dscala=2.11 clean package
+
+mvn -Psparkbench -Dspark=1.6 -Dscala=2.11 clean package
+
+mvn -Psparkbench -Dmodules -Psql -Dspark=1.6 -Dscala=2.11 clean package
+
+mvn -Psparkbench -Dmodules -PstructuredStreaming clean package 
+
+
+
+HIBECH  HOW TO RUN [hdadmin@HDPVM1:/home/hdfs/Hibench/HiBench-master/conf$ sudo vi hadoop.conf / spark.conf ]
+----------------------
+path setup:
+
+HADOOP_HOME: https://apacheignite-fs.readme.io/v1.9.0/docs/installing-on-hortonworks-hdp
+ 
+/usr/hdp/current/hadoop-client/
+
+
+ 
+SPARK_HOME: https://community.hortonworks.com/questions/56440/where-is-spark-home.html
+ 
+/usr/hdp/current/spark-client/sbin
+ 
+ 
+ 
+IF REQUIRED GROUP PERMISSION
+-------------------------------------
+IN HDFS USER ,ODE ONLLY Try
+-------------------------------------------------
+hadoop fs -chown -R hdadmin /HiBench
+
+1275
+
+hadoop fs -chown -R hdadmin /HiBench
+
+hadoop fs -chown -R hdadmin /HiBench
+
+-------------------------------------------------------------
+
+As hadadmin run
+-------------------------------------------------------------------
+step 1: hadoop fs -rm -r  /HiBench/Wordcount/Input
+
+step 2: hadoop fs -rm -r  hdfs://hdpvm1.centralindia.cloudapp.azure.com:8020/user/hdadmin/.Trash/Current/HiBench/Wordcount/Input
+
+staep 3: cd /home/hdfs/Hibench/HiBench-master/bin/workloads/micro/wordcount/prepare$ bash prepare.sh
+
+step 4: hadoop fs -ls hdfs://hdpvm1.centralindia.cloudapp.azure.com:8020/HiBench/Wordcount/Input
+
+step 5 : hadoop fs -cat hdfs://hdpvm1.centralindia.cloudapp.azure.com:8020/HiBench/Wordcount/Input/part-m-00000
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+/usr/lib/jvm/jdk1.8.0/jre
+
+export  JAVA_HOME=/usr/lib/jvm/jdk1.8.0/jre
+
+export  M2_HOME=/usr/local/apache-maven/apache-maven-3.2.5
+
+export  PATH=$PATH:$JAVA_HOME/bin
+
+export  PATH=$PATH:$M2_HOME/bin
+
+
+
+/home/hdfs/Hibench/HiBench-master$ mvn -Phadoopbench -Dspark=1.6 -Dscala=2.11 clean package
+
+=====================================================================================================================================================
+############################# CASSANDRA-STREESS TEST #############################################
+
+
+https://github.com/zznate/cassandra-stress
+
+
+[cassandra-stress]
+usage: operation [options]
+ -b,--batch-size <arg>           The number of rows in the batch_mutate
+                                 call
+ -c,--columns <arg>              The number of columsn to create per key
+ -C,--clients <arg>              The number of pooled clients to use
+ -D,--discovery-delay <arg>      The amount of time to wait between runs
+                                 of Auto host discovery. Providing a value
+                                 enables this service
+ -h,--help                       Print this help message and exit
+ -k,--start-key <arg>            Start on a specific key
+ -L,--consistency-levels <arg>   Defaults to QUORUM for R+W, specified in
+                                 the form of [read]:[write] eg. '-L
+                                 ONE:ONE'
+ -m,--unframed                   Disable use of TFramedTransport
+ -M,--max-wait <arg>             The Maximum time to wait on aquiring a
+                                 connection from the pool
+                                 (maxWaitTimeWhenExhausted). Default is
+                                 forever.
+ -n,--num-keys <arg>             The number of keys to create
+ -o,--operation <arg>            The type of operation: insert or select
+ -R,--retry-delay <arg>          The amount of time to wait between runs
+                                 of Downed host retry delay execution. 30
+                                 seconds by default.
+ -S,--skip-retry-delay           Disable downed host retry service
+                                 execution.
+ -t,--threads <arg>              The number of client threads we will
+                                 create
+ -T,--thrift-timeout <arg>       The ThriftSocketTimeout value.
+ -w,--colwidth <arg>             The widht of the column in bytes. Default
+                                 is 16
+								 
+								 
+Go to :
+C:\cassandra-stress-master\target\appassembler\bin
+
+
+run :
+C:\cassandra-stress-master\target\appassembler\bin\stress -o insert -b 50 -n 12000 localhost:9160
+
+C:\cassandra-stress-master\target\appassembler\bin\stress -o insert -b 100 -c 100 -t 100 -L 100:100 localhost:9160
+
+===========================================================================================================================================================
+

@@ -1,0 +1,31 @@
+https://stackoverflow.com/questions/23976445/how-to-connect-cassandra-to-localhost-using-cqlsh
+
+How to change default port 9042 in Cassandra ?
+
+I resolved issue using below steps :
+
+1.  Stop cassandara services
+sudo su -
+systemctl stop datastax-agent
+systemctl stop opscenterd
+systemctl stop app-dse
+
+2.  Take backup and Change port from 9042 to 9035
+cp /opt/dse/resources/cassandra/conf/cassandra.yaml /opt/dse/resources/cassandra/conf/bkp_cassandra.yaml
+Vi /opt/dse/resources/cassandra/conf/cassandra.yaml
+native_transport_port: 9035
+
+3.  Start Cassandra services 
+
+systemctl start datastax-agent
+systemctl start opscenterd
+systemctl start app-dse
+
+4. create cqlshrc file.
+
+vi  /root/.cassandra/cqlshrc
+
+[connection]
+hostname = 198.168.1.100
+port = 9035
+
